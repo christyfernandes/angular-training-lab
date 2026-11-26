@@ -1,0 +1,24 @@
+.nav-link {
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.75rem;
+  font-weight: 600;
+  color: var(--app-fg-muted);
+}
+.nav-link:hover {
+  color: var(--app-fg);
+  background: var(--app-surface-muted);
+}
+.nav-active {
+  color: var(--app-primary);
+  background: color-mix(in oklab, var(--app-primary) 12%, transparent);
+}
+.menu-item {
+  display: block;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  color: var(--app-fg);
+}
+.menu-item:hover {
+  background: var(--app-surface-muted);
+}

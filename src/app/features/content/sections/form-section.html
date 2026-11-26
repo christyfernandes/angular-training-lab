@@ -1,0 +1,64 @@
+@let s = section();
+<div class="max-w-2xl rounded-2xl border border-line bg-surface p-6">
+  @if (s.title) {
+    <h2 class="text-2xl font-bold">{{ s.title | localize: lang() }}</h2>
+  }
+  @if (s.description) {
+    <p class="mt-1 text-fg-muted">{{ s.description | localize: lang() }}</p>
+  }
+
+  @if (submitted()) {
+    <ui-alert class="mt-5" tone="success" dismissible (dismissed)="submitted.set(false)">
+      {{ s.successMessage | localize: lang() }}
+    </ui-alert>
+  }
+
+  <form class="mt-5 flex flex-col gap-4" [formGroup]="form()" (ngSubmit)="submit()" novalidate>
+    @for (field of s.fields; track field.key) {
+      @let id = fieldId(field);
+      @let error = errorFor(field);
+      <div>
+        @switch (field.type) {
+          @case ('checkbox') {
+            <label class="flex items-start gap-3" [for]="id">
+              <input [id]="id" type="checkbox" class="mt-1 size-4 accent-primary" [formControlName]="field.key" />
+              <span>{{ field.label | localize: lang() }}@if (field.required) {<span class="text-danger"> *</span>}</span>
+            </label>
+          }
+          @default {
+            <label class="field-label" [for]="id">
+              {{ field.label | localize: lang() }}@if (field.required) {<span class="text-danger"> *</span>}
+            </label>
+            @switch (field.type) {
+              @case ('textarea') {
+                <textarea [id]="id" rows="4" class="field-input" [formControlName]="field.key"
+                  [placeholder]="field.placeholder | localize: lang()" [attr.aria-invalid]="error ? true : null"></textarea>
+              }
+              @case ('select') {
+                <select [id]="id" class="field-input" [formControlName]="field.key" [attr.aria-invalid]="error ? true : null">
+                  <option value="">{{ 'forms.choose' | translate }}</option>
+                  @for (option of field.options ?? []; track option.value) {
+                    <option [value]="option.value">{{ option.label | localize: lang() }}</option>
+                  }
+                </select>
+              }
+              @default {
+                <input [id]="id" class="field-input" [type]="field.type" [formControlName]="field.key"
+                  [placeholder]="field.placeholder | localize: lang()" [attr.aria-invalid]="error ? true : null" />
+              }
+            }
+          }
+        }
+        @if (field.hint && !error) {
+          <p class="mt-1 text-sm text-fg-muted">{{ field.hint | localize: lang() }}</p>
+        }
+        @if (error) {
+          <p class="field-error">{{ error.key | translate: error.params }}</p>
+        }
+      </div>
+    }
+    <div>
+      <button uiButton type="submit">{{ s.submitLabel | localize: lang() }}</button>
+    </div>
+  </form>
+</div>

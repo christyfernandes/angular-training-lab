@@ -1,0 +1,33 @@
+{
+  "slug": "home-promos",
+  "title": "Home page promotions",
+  "version": 3,
+  "sections": [
+    {
+      "id": "festive-cta",
+      "type": "cta-banner",
+      "tone": "accent",
+      "title": { "en": "The festive sale is on", "hi": "त्योहार सेल शुरू हो गई है" },
+      "body": {
+        "en": "Up to 25% off phones and laptops until 31 January.",
+        "hi": "31 जनवरी तक फ़ोन और लैपटॉप पर 25% तक की छूट।"
+      },
+      "action": { "label": { "en": "Shop the sale", "hi": "सेल में खरीदें" }, "route": "/pages/festive-sale", "variant": "secondary" },
+      "visibility": { "from": "2026-11-01T00:00:00+05:30", "until": "2027-02-01T00:00:00+05:30", "feature": "campaignPages" }
+    },
+    {
+      "id": "monsoon-cta",
+      "type": "cta-banner",
+      "title": "Monsoon sale (expired – stays hidden)",
+      "action": { "label": "Shop", "route": "/products" },
+      "visibility": { "until": "2026-09-30T00:00:00+05:30" }
+    },
+    {
+      "id": "guest-signup",
+      "type": "cta-banner",
+      "title": { "en": "Log in to see member prices", "hi": "सदस्य कीमतें देखने के लिए लॉग इन करें" },
+      "action": { "label": { "en": "Log in", "hi": "लॉग इन" }, "route": "/login" },
+      "visibility": { "audience": "guest" }
+    }
+  ]
+}

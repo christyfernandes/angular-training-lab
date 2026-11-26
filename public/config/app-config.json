@@ -1,0 +1,33 @@
+{
+  "apiBaseUrl": "https://dummyjson.com",
+  "contentBaseUrl": "/content",
+  "defaultLanguage": "en",
+  "defaultBrand": "peacock",
+  "features": {
+    "conceptsLab": true,
+    "admin": true,
+    "campaignPages": true,
+    "productReviews": true
+  },
+  "navigation": [
+    {
+      "label": { "en": "Festive sale", "hi": "त्योहार सेल" },
+      "route": "/pages/festive-sale",
+      "feature": "campaignPages"
+    },
+    {
+      "label": { "en": "About the lab", "hi": "लैब के बारे में" },
+      "route": "/pages/about-the-lab",
+      "feature": "campaignPages"
+    }
+  ],
+  "announcement": {
+    "id": "festive-2026",
+    "tone": "info",
+    "message": {
+      "en": "This banner, the header links and the sale page all come from JSON files – no code changes.",
+      "hi": "यह बैनर, हेडर के लिंक और सेल पेज – सब JSON फ़ाइलों से आते हैं, कोड बदले बिना।"
+    },
+    "link": { "label": { "en": "See how", "hi": "कैसे, देखें" }, "route": "/lab/startup" }
+  }
+}

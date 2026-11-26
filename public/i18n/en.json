@@ -1,0 +1,300 @@
+{
+  "app": {
+    "name": "Karkhana",
+    "tagline": "Angular Training Lab"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content"
+  },
+  "nav": {
+    "label": "Main",
+    "products": "Products",
+    "lab": "Concepts Lab",
+    "admin": "Admin",
+    "language": "Language",
+    "cartCount": "Cart, {{count}} items",
+    "account": "My account",
+    "logout": "Log out",
+    "login": "Log in",
+    "menu": "Menu",
+    "learn": "Learn"
+  },
+  "theme": {
+    "brand": "Colour theme",
+    "brands": {
+      "peacock": "Peacock",
+      "marigold": "Marigold",
+      "jamun": "Jamun"
+    },
+    "useLight": "Switch to light mode",
+    "useDark": "Switch to dark mode"
+  },
+  "footer": {
+    "about": "Karkhana is a sample app for learning modern Angular.",
+    "data": "Product and user data from"
+  },
+  "common": {
+    "dismiss": "Dismiss",
+    "retry": "Try again",
+    "loading": "Loading",
+    "cancel": "Cancel"
+  },
+  "errors": {
+    "sessionExpired": "Your session has ended. Log in again to continue.",
+    "offline": "Can't reach the server. Check your connection and try again.",
+    "server": "The server ran into a problem. Try again in a moment.",
+    "forbidden": "Your account doesn't have access to that page.",
+    "navigation": "That page couldn't be loaded. Reload the app to get the latest version."
+  },
+  "titles": {
+    "home": "Home",
+    "products": "Products",
+    "productDetail": "{{product.title}}",
+    "cart": "Cart",
+    "login": "Log in",
+    "account": "My account",
+    "admin": "Manage products",
+    "newProduct": "New product",
+    "editProduct": "Edit {{product.title}}",
+    "notFound": "Page not found",
+    "labSignals": "Signals",
+    "labBindings": "Bindings",
+    "labLifecycle": "Lifecycle",
+    "labPipes": "Pipes",
+    "labDi": "Dependency injection",
+    "contentPage": "Page",
+    "labStartup": "Startup",
+    "learn": "Learning path"
+  },
+  "home": {
+    "headline": "Learn modern Angular by reading a working store.",
+    "intro": "Every screen in Karkhana demonstrates an Angular 22 feature. Use the app, then open the file listed below to see how it is built.",
+    "browse": "Browse products",
+    "openLab": "Open the Concepts Lab",
+    "conceptsTitle": "Where each concept lives",
+    "conceptsBody": "Paths are relative to src/app unless noted.",
+    "colConcept": "Concept",
+    "colSee": "See it",
+    "colFile": "Read the code",
+    "featured": "Top rated right now",
+    "layers": {
+      "title": "How the code is organised",
+      "features": "Pages, each lazy loaded by the router",
+      "layout": "Header, footer, toasts",
+      "shared": "Pipes, directives, helpers",
+      "core": "Services, interceptors, guards, resolvers",
+      "uiKit": "Reusable components in a separate library"
+    },
+    "startLearning": "Start the learning path"
+  },
+  "products": {
+    "title": "Products",
+    "subtitle": "Search, filter and sort. The URL keeps your choices, so you can share it.",
+    "resultCount": "{{count}} products",
+    "loadErrorTitle": "Products didn't load",
+    "loadErrorBody": "The product service didn't respond. Check your connection, then try again.",
+    "emptyTitle": "No products match",
+    "emptyBody": "Try a different search or category.",
+    "lowStock": "Only {{count}} left",
+    "rating": "Rating",
+    "soldOut": "Sold out",
+    "addToCart": "Add to cart"
+  },
+  "filters": {
+    "search": "Search",
+    "searchPlaceholder": "Phone, perfume, laptop…",
+    "category": "Category",
+    "allCategories": "All categories",
+    "sort": "Sort by",
+    "sortOptions": {
+      "relevance": "Relevance",
+      "price-asc": "Price: low to high",
+      "price-desc": "Price: high to low",
+      "rating-desc": "Top rated"
+    },
+    "clear": "Clear filters"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "label": "Pagination"
+  },
+  "detail": {
+    "breadcrumb": "Breadcrumb",
+    "showImage": "Show image {{index}}",
+    "reviews": "Reviews ({{count}})",
+    "noReviews": "No reviews yet.",
+    "inStock": "{{count}} in stock",
+    "shipping": "Shipping",
+    "warranty": "Warranty",
+    "returns": "Returns"
+  },
+  "cart": {
+    "added": "Added {{title}} to your cart",
+    "title": "Your cart",
+    "emptyTitle": "Your cart is empty",
+    "emptyBody": "Add a few products to try the cart, checkout and the CSV export in the Concepts Lab.",
+    "each": "each",
+    "quantity": "Quantity",
+    "decrease": "Decrease quantity",
+    "increase": "Increase quantity",
+    "remove": "Remove",
+    "summary": "Order summary",
+    "items": "Items ({{count}})",
+    "savings": "Savings",
+    "total": "Total",
+    "checkout": "Place order",
+    "clear": "Empty cart",
+    "orderPlaced": "Order placed. This is a demo, so nothing will be shipped."
+  },
+  "login": {
+    "title": "Log in",
+    "subtitle": "Sign in to see your account and, as an admin, manage products.",
+    "username": "Username",
+    "password": "Password",
+    "show": "Show",
+    "hide": "Hide",
+    "submit": "Log in",
+    "welcome": "Welcome back, {{name}}",
+    "demoTitle": "Demo account",
+    "demoBody": "Use emilys / emilyspass. This DummyJSON user has the admin role.",
+    "useDemo": "Fill in the demo account",
+    "errors": {
+      "usernameRequired": "Enter your username.",
+      "passwordRequired": "Enter your password.",
+      "passwordTooShort": "Passwords are at least 6 characters.",
+      "invalidCredentials": "That username and password don't match. Check them and try again."
+    }
+  },
+  "account": {
+    "title": "My account",
+    "email": "Email",
+    "phone": "Phone",
+    "company": "Work",
+    "location": "Location",
+    "loadError": "Your profile didn't load. Refresh the page to try again.",
+    "roles": {
+      "admin": "Admin",
+      "moderator": "Moderator",
+      "user": "Customer"
+    }
+  },
+  "notFound": {
+    "title": "This page doesn't exist",
+    "body": "The link may be old, or the product may have been removed.",
+    "home": "Go to the home page"
+  },
+  "admin": {
+    "title": "Manage products",
+    "subtitle": "Create, edit and delete products.",
+    "newProduct": "New product",
+    "simulatedNote": "DummyJSON simulates changes: you get a realistic response, but nothing is saved on the server.",
+    "colProduct": "Product",
+    "colCategory": "Category",
+    "colPrice": "Price",
+    "colStock": "Stock",
+    "colActions": "Actions",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirmDelete": "Delete {{title}}?",
+    "deleted": "Deleted {{title}}"
+  },
+  "editor": {
+    "newTitle": "New product",
+    "editTitle": "Edit product",
+    "fields": {
+      "title": "Title",
+      "description": "Description",
+      "category": "Category",
+      "brand": "Brand (optional)",
+      "price": "Price (USD)",
+      "discount": "Discount (%)",
+      "stock": "Stock",
+      "tags": "Tags"
+    },
+    "chooseCategory": "Choose a category",
+    "tagLabel": "Tag {{index}}",
+    "removeTag": "Remove",
+    "addTag": "Add a tag",
+    "fixErrors": "Fix the highlighted fields to save.",
+    "saveChanges": "Save changes",
+    "create": "Create product",
+    "preview": "Live preview",
+    "previewTitle": "Product title",
+    "confirmLeave": "You have unsaved changes. Leave without saving?",
+    "created": "Created {{title}}",
+    "updated": "Saved {{title}}",
+    "saveFailed": "The product wasn't saved. Try again.",
+    "errors": {
+      "required": "This field is required.",
+      "minLength": "Use at least {{min}} characters.",
+      "maxLength": "Use at most {{max}} characters.",
+      "positive": "Enter a price above 0.",
+      "discountRange": "Use a discount from 0 to 90.",
+      "wholeNumber": "Enter a whole number, 0 or more.",
+      "duplicateTags": "Each tag can appear only once."
+    }
+  },
+  "lab": {
+    "title": "Concepts Lab",
+    "intro": "Small, focused demos of core Angular features. Each panel names the file to open.",
+    "nav": {
+      "signals": "Signals",
+      "bindings": "Bindings",
+      "lifecycle": "Lifecycle",
+      "pipes": "Pipes",
+      "di": "Dependency injection",
+      "startup": "Startup and config"
+    }
+  },
+  "announcement": {
+    "label": "Announcement"
+  },
+  "content": {
+    "notFoundTitle": "This page isn't available",
+    "notFoundBody": "The page may have ended or moved. Try the home page instead."
+  },
+  "forms": {
+    "choose": "Choose…",
+    "errors": {
+      "required": "This field is required.",
+      "mustAccept": "Tick this box to continue.",
+      "email": "Enter an email address like name@example.com.",
+      "minLength": "Use at least {{min}} characters.",
+      "maxLength": "Use at most {{max}} characters.",
+      "min": "Enter {{min}} or more.",
+      "max": "Enter {{max}} or less.",
+      "pattern": "Use the format shown below the field.",
+      "invalid": "Check this value."
+    }
+  },
+  "learn": {
+    "title": "Learning path",
+    "track": "Track",
+    "progress": "{{done}} of {{total}} steps done",
+    "copy": "Copy progress for your PR",
+    "copied": "Progress copied. Paste it into your PR description.",
+    "copyFailed": "Couldn't copy. Select the text manually instead.",
+    "continue": "Continue:",
+    "allDone": "Every stage is complete. Book your capstone demo.",
+    "stages": "Stages",
+    "endsWithCheckpoint": "Ends with a checkpoint",
+    "hours": "about {{hours}} hours",
+    "markDone": "Mark as done",
+    "only": "{{track}} only",
+    "minutes": "{{minutes}} min",
+    "lookFor": "Look for:",
+    "open": "Open",
+    "loadError": "The learning path didn't load. Check that public/content/learning-path.json exists and is valid JSON.",
+    "kinds": {
+      "setup": "Set up",
+      "read": "Read",
+      "watch": "Watch",
+      "explore": "Explore",
+      "study": "Study code",
+      "exercise": "Exercise",
+      "check": "Self-check"
+    }
+  }
+}

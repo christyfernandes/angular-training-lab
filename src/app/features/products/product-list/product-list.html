@@ -1,0 +1,68 @@
+<section class="flex flex-col gap-6">
+  <header class="flex flex-wrap items-end justify-between gap-2">
+    <div>
+      <h1 class="text-3xl font-extrabold">{{ 'products.title' | translate }}</h1>
+      <p class="text-fg-muted">{{ 'products.subtitle' | translate }}</p>
+    </div>
+    @if (!products.error()) {
+      <p class="text-sm text-fg-muted" aria-live="polite">
+        {{ 'products.resultCount' | translate: { count: products.value().total } }}
+      </p>
+    }
+  </header>
+
+  <app-product-filters
+    [(search)]="searchText"
+    [category]="category()"
+    [sort]="sort()"
+    [categories]="categories()"
+    (categoryChange)="onCategoryChange($event)"
+    (sortChange)="onSortChange($event)"
+  />
+
+  <!--
+    Order matters: check error() BEFORE reading value(). Reading value() of a resource
+    in the error state throws.
+  -->
+  @if (products.error()) {
+    <ui-alert tone="danger" [heading]="'products.loadErrorTitle' | translate">
+      <p>{{ 'products.loadErrorBody' | translate }}</p>
+      <button uiButton variant="secondary" size="sm" type="button" class="mt-3" (click)="products.reload()">
+        {{ 'common.retry' | translate }}
+      </button>
+    </ui-alert>
+  } @else if (products.isLoading() && products.value().products.length === 0) {
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4" aria-busy="true">
+      @for (i of [1, 2, 3, 4, 5, 6, 7, 8]; track i) {
+        <div class="skeleton aspect-[3/4]"></div>
+      }
+    </div>
+  } @else {
+    @let result = products.value();
+    <div
+      class="grid grid-cols-2 gap-4 transition-opacity md:grid-cols-3 lg:grid-cols-4"
+      [class.opacity-60]="products.isLoading()"
+      [attr.aria-busy]="products.isLoading()"
+    >
+      @for (product of result.products; track product.id; let i = $index) {
+        <app-product-card [product]="product" [locale]="locale()" [priority]="i < 4" (addToCart)="addToCart($event)" />
+      } @empty {
+        <div class="col-span-full rounded-xl border border-dashed border-line p-10 text-center">
+          <p class="font-semibold">{{ 'products.emptyTitle' | translate }}</p>
+          <p class="mt-1 text-fg-muted">{{ 'products.emptyBody' | translate }}</p>
+          <button uiButton variant="secondary" type="button" class="mt-4" (click)="clearFilters()">
+            {{ 'filters.clear' | translate }}
+          </button>
+        </div>
+      }
+    </div>
+
+    <ui-paginator
+      [total]="result.total"
+      [pageSize]="pageSize"
+      [page]="page()"
+      [labels]="paginatorLabels()"
+      (pageChange)="onPageChange($event)"
+    />
+  }
+</section>

@@ -1,0 +1,165 @@
+@if (store.path.error()) {
+  <p class="text-danger">{{ 'learn.loadError' | translate }}</p>
+} @else if (!store.path.hasValue()) {
+  <ui-spinner [label]="'common.loading' | translate" />
+} @else {
+  @let path = store.path.value();
+  <header class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <div class="max-w-2xl">
+      <h1 class="text-3xl font-extrabold">{{ 'learn.title' | translate }}</h1>
+      <p class="mt-1 text-fg-muted">{{ path.intro }}</p>
+    </div>
+    <div class="flex flex-col gap-3 lg:items-end">
+      <div class="inline-flex rounded-lg border border-line bg-surface p-1" role="radiogroup" [attr.aria-label]="'learn.track' | translate">
+        @for (t of path.tracks; track t.id) {
+          <button
+            type="button"
+            role="radio"
+            class="rounded-md px-3 py-1.5 text-sm font-semibold"
+            [class.bg-primary]="t.id === store.track()"
+            [class.text-on-primary]="t.id === store.track()"
+            [class.text-fg-muted]="t.id !== store.track()"
+            [attr.aria-checked]="t.id === store.track()"
+            [title]="t.description"
+            (click)="setTrack(t.id)"
+          >
+            {{ t.name }}
+          </button>
+        }
+      </div>
+      <div class="flex items-center gap-3 text-sm">
+        <span class="text-fg-muted">{{ 'learn.progress' | translate: { done: overall().done, total: overall().total } }}</span>
+        <button uiButton size="sm" variant="secondary" type="button" (click)="copyProgress()">{{ 'learn.copy' | translate }}</button>
+      </div>
+    </div>
+  </header>
+
+  @if (store.next(); as next) {
+    <a
+      [routerLink]="['/learn', next.stage.id]"
+      [fragment]="next.step.id"
+      class="mt-5 flex items-center gap-3 rounded-xl border border-primary bg-primary-soft px-4 py-3 text-sm hover:underline"
+    >
+      <span class="font-semibold text-primary">{{ 'learn.continue' | translate }}</span>
+      <span>{{ next.stage.label }}: {{ next.step.title }}</span>
+    </a>
+  } @else {
+    <p class="mt-5 rounded-xl border border-success bg-success/10 px-4 py-3 text-sm font-semibold">{{ 'learn.allDone' | translate }}</p>
+  }
+
+  <div class="mt-6 grid gap-6 md:grid-cols-[250px_1fr]">
+    <!-- Stages, in order -->
+    <nav [attr.aria-label]="'learn.stages' | translate">
+      <ol class="flex flex-col gap-1">
+        @for (s of path.stages; track s.id) {
+          @let p = progressOf(s.id);
+          <li>
+            <a
+              [routerLink]="['/learn', s.id]"
+              class="block rounded-lg px-3 py-2 hover:bg-surface-muted"
+              [class.bg-primary-soft]="s.id === selected()?.id"
+              [attr.aria-current]="s.id === selected()?.id ? 'step' : null"
+            >
+              <span class="flex items-baseline justify-between gap-2">
+                <span class="text-xs font-semibold text-fg-muted">{{ s.label }}</span>
+                <span class="text-xs tabular-nums text-fg-muted">{{ p.done }}/{{ p.total }}</span>
+              </span>
+              <span class="block font-semibold" [class.text-primary]="s.id === selected()?.id">{{ s.title }}</span>
+              <span class="mt-1.5 block h-1.5 overflow-hidden rounded-full bg-surface-muted">
+                <span class="block h-full rounded-full bg-primary" [style.width.%]="percent(p)"></span>
+              </span>
+              @if (s.checkpoint) {
+                <span class="mt-1 block text-xs text-fg-muted">{{ 'learn.endsWithCheckpoint' | translate }}</span>
+              }
+            </a>
+          </li>
+        }
+      </ol>
+    </nav>
+
+    <!-- Selected stage -->
+    @if (selected(); as stage) {
+      <section class="min-w-0">
+        <p class="text-sm font-semibold text-fg-muted">{{ stage.label }} · {{ 'learn.hours' | translate: { hours: stage.hours } }}</p>
+        <h2 class="text-2xl font-bold">{{ stage.title }}</h2>
+        <p class="mt-1 text-fg-muted">{{ stage.goal }}</p>
+
+        <ol class="mt-5 flex flex-col gap-3">
+          @for (step of steps(); track step.id; let i = $index) {
+            @let isDone = store.done().has(step.id);
+            <li [id]="step.id" class="scroll-mt-24 rounded-xl border border-line bg-surface p-4" [class.opacity-70]="isDone">
+              <div class="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  class="mt-1 size-5 shrink-0 accent-primary"
+                  [checked]="isDone"
+                  [attr.aria-label]="('learn.markDone' | translate) + ': ' + step.title"
+                  (change)="store.toggle(step.id)"
+                />
+                <div class="min-w-0 flex-1">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-sm tabular-nums text-fg-muted">{{ i + 1 }}.</span>
+                    <ui-badge [tone]="kindTones[step.kind]">{{ 'learn.kinds.' + step.kind | translate }}</ui-badge>
+                    @if (step.track !== 'both') {
+                      <ui-badge>{{ 'learn.only' | translate: { track: trackName(step.track) } }}</ui-badge>
+                    }
+                    <span class="text-xs text-fg-muted">{{ 'learn.minutes' | translate: { minutes: step.minutes } }}</span>
+                  </div>
+                  <p class="mt-1 font-semibold" [class.line-through]="isDone">
+                    @if (step.url) {
+                      <a [href]="step.url" target="_blank" rel="noopener" class="text-primary hover:underline">{{ step.title }} ↗</a>
+                    } @else {
+                      {{ step.title }}
+                    }
+                  </p>
+                  @if (step.note) {
+                    <p class="mt-1 text-sm text-fg-muted">{{ step.note }}</p>
+                  }
+                  @if (step.lookFor) {
+                    <p class="mt-2 text-sm"><span class="font-semibold">{{ 'learn.lookFor' | translate }}</span> {{ step.lookFor }}</p>
+                  }
+                  @if (step.questions?.length) {
+                    <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm">
+                      @for (q of step.questions; track $index) { <li>{{ q }}</li> }
+                    </ol>
+                  }
+                  @if (step.doneWhen) {
+                    <p class="mt-2 text-sm text-fg-muted">{{ step.doneWhen }}</p>
+                  }
+                  @if (step.route || step.files?.length) {
+                    <div class="mt-3 flex flex-wrap items-center gap-2">
+                      @if (step.route) {
+                        <a uiButton size="sm" variant="secondary" [routerLink]="step.route">{{ 'learn.open' | translate }} {{ step.route }}</a>
+                      }
+                      @for (file of step.files ?? []; track file) {
+                        <code class="select-all rounded-md bg-surface-muted px-2 py-1 text-xs">{{ file }}</code>
+                      }
+                    </div>
+                  }
+                </div>
+              </div>
+            </li>
+          }
+        </ol>
+
+        @if (stage.checkpoint) {
+          <div class="mt-5 rounded-xl border-2 border-accent p-4">
+            <p class="font-bold">{{ stage.checkpoint.title }}</p>
+            <p class="mt-1 text-sm">{{ stage.checkpoint.submit }}</p>
+          </div>
+        }
+
+        <div class="mt-6 flex justify-between gap-3">
+          @if (selectedIndex() > 0) {
+            <a uiButton variant="ghost" [routerLink]="['/learn', path.stages[selectedIndex() - 1].id]">← {{ path.stages[selectedIndex() - 1].label }}</a>
+          } @else {
+            <span></span>
+          }
+          @if (selectedIndex() < path.stages.length - 1) {
+            <a uiButton variant="secondary" [routerLink]="['/learn', path.stages[selectedIndex() + 1].id]">{{ path.stages[selectedIndex() + 1].label }} →</a>
+          }
+        </div>
+      </section>
+    }
+  </div>
+}

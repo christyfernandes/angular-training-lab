@@ -1,0 +1,102 @@
+<nav class="mb-4 text-sm"><a routerLink="/admin" class="text-fg-muted hover:text-primary">← {{ 'admin.title' | translate }}</a></nav>
+<h1 class="text-3xl font-extrabold">{{ (isEdit() ? 'editor.editTitle' : 'editor.newTitle') | translate }}</h1>
+
+<div class="mt-6 grid gap-8 lg:grid-cols-[1fr_300px]">
+  <form [formGroup]="form" (ngSubmit)="save()" class="flex flex-col gap-5 rounded-xl border border-line bg-surface p-6" novalidate>
+    <div>
+      <label class="field-label" for="title">{{ 'editor.fields.title' | translate }}</label>
+      <input id="title" class="field-input" formControlName="title" />
+      @if (showError(form.controls.title)) {
+        @if (form.controls.title.hasError('required')) {
+          <p class="field-error">{{ 'editor.errors.required' | translate }}</p>
+        } @else if (form.controls.title.hasError('minlength')) {
+          <p class="field-error">{{ 'editor.errors.minLength' | translate: { min: 3 } }}</p>
+        } @else if (form.controls.title.hasError('maxlength')) {
+          <p class="field-error">{{ 'editor.errors.maxLength' | translate: { max: 80 } }}</p>
+        }
+      }
+    </div>
+
+    <div>
+      <label class="field-label" for="description">{{ 'editor.fields.description' | translate }}</label>
+      <textarea id="description" rows="4" class="field-input" formControlName="description"></textarea>
+      @if (showError(form.controls.description)) {
+        <p class="field-error">{{ 'editor.errors.minLength' | translate: { min: 20 } }}</p>
+      }
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2">
+      <div>
+        <label class="field-label" for="category">{{ 'editor.fields.category' | translate }}</label>
+        <select id="category" class="field-input" formControlName="category">
+          <option value="" disabled>{{ 'editor.chooseCategory' | translate }}</option>
+          @for (c of categories(); track c.slug) {
+            <option [value]="c.slug">{{ c.name }}</option>
+          }
+        </select>
+        @if (showError(form.controls.category)) {
+          <p class="field-error">{{ 'editor.errors.required' | translate }}</p>
+        }
+      </div>
+      <div>
+        <label class="field-label" for="brand">{{ 'editor.fields.brand' | translate }}</label>
+        <input id="brand" class="field-input" formControlName="brand" />
+      </div>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-3">
+      <div>
+        <label class="field-label" for="price">{{ 'editor.fields.price' | translate }}</label>
+        <input id="price" type="number" step="0.01" class="field-input" formControlName="price" />
+        @if (showError(form.controls.price)) {
+          <p class="field-error">{{ 'editor.errors.positive' | translate }}</p>
+        }
+      </div>
+      <div>
+        <label class="field-label" for="discount">{{ 'editor.fields.discount' | translate }}</label>
+        <input id="discount" type="number" step="1" class="field-input" formControlName="discountPercentage" />
+        @if (showError(form.controls.discountPercentage)) {
+          <p class="field-error">{{ 'editor.errors.discountRange' | translate }}</p>
+        }
+      </div>
+      <div>
+        <label class="field-label" for="stock">{{ 'editor.fields.stock' | translate }}</label>
+        <input id="stock" type="number" step="1" class="field-input" formControlName="stock" />
+        @if (showError(form.controls.stock)) {
+          <p class="field-error">{{ 'editor.errors.wholeNumber' | translate }}</p>
+        }
+      </div>
+    </div>
+
+    <!-- FormArray: a dynamic list of controls -->
+    <fieldset>
+      <legend class="field-label">{{ 'editor.fields.tags' | translate }}</legend>
+      <div class="flex flex-col gap-2" formArrayName="tags">
+        @for (tag of tags.controls; track tag; let i = $index) {
+          <div class="flex gap-2">
+            <input class="field-input" [formControlName]="i" [attr.aria-label]="'editor.tagLabel' | translate: { index: i + 1 }" />
+            <button uiButton variant="ghost" type="button" (click)="removeTag(i)">{{ 'editor.removeTag' | translate }}</button>
+          </div>
+        }
+      </div>
+      @if (tags.hasError('duplicateTags')) {
+        <p class="field-error">{{ 'editor.errors.duplicateTags' | translate }}</p>
+      }
+      <button uiButton variant="secondary" size="sm" type="button" class="mt-2" (click)="addTag()">{{ 'editor.addTag' | translate }}</button>
+    </fieldset>
+
+    @if (form.invalid && form.touched) {
+      <ui-alert tone="danger">{{ 'editor.fixErrors' | translate }}</ui-alert>
+    }
+
+    <div class="flex gap-3">
+      <button uiButton type="submit" [loading]="saving()">{{ (isEdit() ? 'editor.saveChanges' : 'editor.create') | translate }}</button>
+      <a uiButton variant="ghost" routerLink="/admin">{{ 'common.cancel' | translate }}</a>
+    </div>
+  </form>
+
+  <aside>
+    <h2 class="mb-3 text-sm font-semibold text-fg-muted">{{ 'editor.preview' | translate }}</h2>
+    <app-product-card [product]="preview()" [locale]="locale()" hideActions priority />
+  </aside>
+</div>

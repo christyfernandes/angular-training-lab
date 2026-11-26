@@ -1,0 +1,104 @@
+<div class="flex flex-col gap-5">
+  <app-demo-panel heading="1. Interpolation, property, attribute, class and style bindings" file="bindings-demo.html">
+    <label class="field-label" for="name">Name</label>
+    <input id="name" class="field-input max-w-xs" [value]="name()" (input)="name.set(nameBox.value)" #nameBox />
+
+    <!-- {{ }} interpolation -->
+    <p class="mt-3">Hello, <strong>{{ name() }}</strong>! Your name has {{ name().length }} characters.</p>
+
+    <!-- [property] binding · [attr.x] attribute binding · [class.x] · [style.x] -->
+    <div class="mt-3 flex flex-wrap items-center gap-3">
+      <button uiButton type="button" [disabled]="disabled()" [attr.aria-describedby]="disabled() ? 'why-disabled' : null">
+        I can be disabled
+      </button>
+      <label class="flex items-center gap-2 text-sm">
+        <input type="checkbox" [checked]="disabled()" (change)="disabled.set(disabledBox.checked)" #disabledBox />
+        Disable the button
+      </label>
+      @if (disabled()) {
+        <span id="why-disabled" class="text-sm text-fg-muted">Disabled by the checkbox.</span>
+      }
+    </div>
+
+    <div class="mt-4">
+      <label class="field-label" for="progress">Progress: {{ progress() }}%</label>
+      <input id="progress" type="range" min="0" max="100" [value]="progress()" (input)="setProgress(progressBox.value)" #progressBox class="w-full max-w-sm" />
+      <div class="mt-2 h-3 max-w-sm overflow-hidden rounded-full bg-surface-muted">
+        <div class="h-full rounded-full transition-all" [style.width.%]="progress()" [class.bg-success]="progress() >= 80" [class.bg-primary]="progress() < 80"></div>
+      </div>
+    </div>
+  </app-demo-panel>
+
+  <app-demo-panel heading="2. Event binding and two-way binding" file="bindings-demo.html">
+    <div class="flex flex-wrap items-center gap-4">
+      <button uiButton variant="secondary" type="button" (click)="clicks.update((c) => c + 1)">Clicked {{ clicks() }} times</button>
+      <input class="field-input max-w-56" placeholder="Press any key…" (keydown)="lastKey.set($event.key)" (keydown.enter)="clicks.set(0)" />
+      <span class="text-sm">Last key: <code>{{ lastKey() }}</code> (Enter resets the counter)</span>
+    </div>
+
+    <!-- [(value)] works because ui-rating declares value = model(0) -->
+    <div class="mt-4 flex flex-wrap items-center gap-4">
+      <ui-rating [(value)]="myRating" label="Your rating" />
+      <span>Parent signal: <strong>{{ myRating() }}</strong></span>
+      <button uiButton size="sm" variant="ghost" type="button" (click)="myRating.set(5)">Set 5 from the parent</button>
+    </div>
+  </app-demo-panel>
+
+  <app-demo-panel heading="3. Control flow: @if, @for, @switch, @let" file="bindings-demo.html">
+    <form class="flex gap-2" (submit)="$event.preventDefault(); addTask(taskBox.value); taskBox.value = ''">
+      <input #taskBox class="field-input max-w-xs" placeholder="New task" aria-label="New task" />
+      <button uiButton type="submit">Add</button>
+    </form>
+
+    @let total = tasks().length;
+    <p class="mt-3 text-sm text-fg-muted">{{ doneCount() }} of {{ total }} done</p>
+
+    <ul class="mt-2 divide-y divide-line rounded-lg border border-line">
+      @for (task of tasks(); track task.id; let i = $index, first = $first, last = $last, even = $even) {
+        <li class="flex items-center gap-3 px-3 py-2" [class.bg-surface-muted]="even">
+          <span class="w-6 text-sm text-fg-muted">{{ i + 1 }}</span>
+          <span class="flex-1" [class.line-through]="task.status === 'done'">{{ task.title }}</span>
+          @switch (task.status) {
+            @case ('todo') { <ui-badge>To do</ui-badge> }
+            @case ('doing') { <ui-badge tone="warning">In progress</ui-badge> }
+            @case ('done') { <ui-badge tone="success">Done</ui-badge> }
+          }
+          @if (first) { <span class="text-xs text-fg-muted">first</span> }
+          @if (last) { <span class="text-xs text-fg-muted">last</span> }
+          <button uiButton size="sm" variant="ghost" type="button" (click)="advance(task)">Next status</button>
+          <button uiButton size="sm" variant="ghost" type="button" (click)="remove(task.id)" [attr.aria-label]="'Remove ' + task.title">✕</button>
+        </li>
+      } @empty {
+        <li class="px-3 py-6 text-center text-fg-muted">No tasks. Add one above.</li>
+      }
+    </ul>
+  </app-demo-panel>
+
+  <app-demo-panel heading="4. Content projection and the ui-kit library" file="projects/ui-kit/src/lib">
+    <div class="grid gap-4 md:grid-cols-2">
+      <ui-card>
+        <h3 uiCardHeader class="font-bold">Projected header</h3>
+        <p>This paragraph goes into the card's default slot. The header and footer use
+          <code>select="[uiCardHeader]"</code> and <code>select="[uiCardFooter]"</code>.</p>
+        <div uiCardFooter class="flex gap-2">
+          <button uiButton size="sm" type="button">Primary</button>
+          <button uiButton size="sm" variant="secondary" type="button">Secondary</button>
+        </div>
+      </ui-card>
+      <div class="flex flex-col gap-3">
+        <div class="flex flex-wrap gap-2">
+          @for (variant of variants; track variant) {
+            <button uiButton size="sm" type="button" [variant]="variant">{{ variant }}</button>
+          }
+          <button uiButton size="sm" type="button" loading>Saving</button>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          @for (tone of tones; track tone) {
+            <ui-badge [tone]="tone">{{ tone }}</ui-badge>
+          }
+        </div>
+        <ui-alert tone="success" heading="Alerts project content too">Use them for inline feedback.</ui-alert>
+      </div>
+    </div>
+  </app-demo-panel>
+</div>

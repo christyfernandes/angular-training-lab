@@ -1,0 +1,62 @@
+{
+  "slug": "about-the-lab",
+  "title": { "en": "About the lab", "hi": "लैब के बारे में" },
+  "version": 2,
+  "sections": [
+    {
+      "id": "intro",
+      "type": "rich-text",
+      "title": { "en": "A page built entirely from JSON", "hi": "पूरी तरह JSON से बना पेज" },
+      "paragraphs": [
+        {
+          "en": "This page lives in public/content/pages/about-the-lab.json. The app validates it, filters sections by their visibility rules, and lazy-loads one component per section type.",
+          "hi": "यह पेज public/content/pages/about-the-lab.json में है। ऐप इसे जाँचता है, दृश्यता नियमों से सेक्शन छाँटता है और हर सेक्शन टाइप के लिए एक कंपोनेंट लेज़ी लोड करता है।"
+        },
+        {
+          "en": "Use this approach for content that changes often or is owned by non-developers: campaigns, landing pages, FAQs, surveys and lead forms.",
+          "hi": "यह तरीका उस सामग्री के लिए अपनाएँ जो बार-बार बदलती है या डेवलपर नहीं संभालते: कैंपेन, लैंडिंग पेज, FAQ, सर्वे और लीड फ़ॉर्म।"
+        }
+      ]
+    },
+    {
+      "id": "pieces",
+      "type": "feature-grid",
+      "columns": 2,
+      "title": { "en": "The moving parts", "hi": "मुख्य हिस्से" },
+      "items": [
+        { "title": "content.model.ts", "body": { "en": "The typed JSON contract: a discriminated union of section types.", "hi": "टाइप किया हुआ JSON अनुबंध: सेक्शन टाइप्स का डिस्क्रिमिनेटेड यूनियन।" } },
+        { "title": "parse-page.ts", "body": { "en": "Runtime validation. Bad sections are skipped with a warning.", "hi": "रनटाइम जाँच। ख़राब सेक्शन चेतावनी के साथ छोड़ दिए जाते हैं।" } },
+        { "title": "section-registry.ts", "body": { "en": "Maps each type to a lazily loaded component.", "hi": "हर टाइप को एक लेज़ी लोड होने वाले कंपोनेंट से जोड़ता है।" } },
+        { "title": "dynamic-form.ts", "body": { "en": "Builds a Reactive Forms group from field definitions.", "hi": "फ़ील्ड परिभाषाओं से Reactive Forms ग्रुप बनाता है।" } }
+      ]
+    },
+    {
+      "id": "broken-on-purpose",
+      "type": "carousel",
+      "title": "An unknown section type: skipped by the validator with a console warning"
+    },
+    {
+      "id": "feedback",
+      "type": "form",
+      "title": { "en": "Training feedback", "hi": "प्रशिक्षण पर प्रतिक्रिया" },
+      "description": { "en": "A survey defined in JSON. Add or reorder questions without touching code.", "hi": "JSON में परिभाषित सर्वे। कोड छुए बिना सवाल जोड़ें या क्रम बदलें।" },
+      "submitLabel": { "en": "Send feedback", "hi": "प्रतिक्रिया भेजें" },
+      "successMessage": { "en": "Thanks! Your feedback was sent.", "hi": "धन्यवाद! आपकी प्रतिक्रिया भेज दी गई।" },
+      "fields": [
+        { "key": "name", "type": "text", "label": { "en": "Your name", "hi": "आपका नाम" }, "required": true, "minLength": 2, "maxLength": 60 },
+        { "key": "email", "type": "email", "label": { "en": "Work email", "hi": "ऑफ़िस ईमेल" }, "required": true },
+        {
+          "key": "track", "type": "select", "label": { "en": "Track", "hi": "ट्रैक" }, "required": true,
+          "options": [
+            { "value": "foundations", "label": { "en": "Foundations", "hi": "फ़ाउंडेशन्स" } },
+            { "value": "accelerated", "label": { "en": "Accelerated", "hi": "एक्सेलरेटेड" } }
+          ]
+        },
+        { "key": "week", "type": "number", "label": { "en": "Current week (1–6)", "hi": "मौजूदा हफ़्ता (1–6)" }, "min": 1, "max": 6, "required": true },
+        { "key": "employeeId", "type": "text", "label": { "en": "Employee ID", "hi": "कर्मचारी आईडी" }, "pattern": "^[A-Z]{2}[0-9]{4}$", "hint": { "en": "Two capital letters and four digits, e.g. TR1234", "hi": "दो बड़े अक्षर और चार अंक, जैसे TR1234" } },
+        { "key": "comments", "type": "textarea", "label": { "en": "What should we improve?", "hi": "हमें क्या सुधारना चाहिए?" }, "maxLength": 500 },
+        { "key": "contactOk", "type": "checkbox", "label": { "en": "You may contact me about my answers", "hi": "आप मेरे जवाबों के बारे में मुझसे संपर्क कर सकते हैं" } }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+<header class="flex flex-wrap items-end justify-between gap-3">
+  <div>
+    <h1 class="text-3xl font-extrabold">{{ 'admin.title' | translate }}</h1>
+    <p class="text-fg-muted">{{ 'admin.subtitle' | translate }}</p>
+  </div>
+  <a uiButton routerLink="products/new">{{ 'admin.newProduct' | translate }}</a>
+</header>
+
+<ui-alert class="mt-6" tone="warning">{{ 'admin.simulatedNote' | translate }}</ui-alert>
+
+@if (products.error()) {
+  <ui-alert class="mt-6" tone="danger">{{ 'products.loadErrorBody' | translate }}</ui-alert>
+} @else {
+  <div class="mt-6 overflow-x-auto rounded-xl border border-line bg-surface">
+    <table class="w-full min-w-[720px] text-left text-sm" [attr.aria-busy]="products.isLoading()">
+      <thead class="border-b border-line bg-surface-muted text-fg-muted">
+        <tr>
+          <th scope="col" class="px-4 py-3">{{ 'admin.colProduct' | translate }}</th>
+          <th scope="col" class="px-4 py-3">{{ 'admin.colCategory' | translate }}</th>
+          <th scope="col" class="px-4 py-3 text-right">{{ 'admin.colPrice' | translate }}</th>
+          <th scope="col" class="px-4 py-3 text-right">{{ 'admin.colStock' | translate }}</th>
+          <th scope="col" class="px-4 py-3 text-right">{{ 'admin.colActions' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of products.value().products; track product.id) {
+          <tr class="border-b border-line last:border-0" [class.opacity-50]="products.isLoading()">
+            <td class="px-4 py-3 font-semibold">{{ product.title }}</td>
+            <td class="px-4 py-3"><ui-badge>{{ product.category }}</ui-badge></td>
+            <td class="px-4 py-3 text-right">{{ product.price | currency: 'USD' : 'symbol' : '1.2-2' : locale() }}</td>
+            <td class="px-4 py-3 text-right" [class.text-warning]="product.stock < 10">{{ product.stock }}</td>
+            <td class="px-4 py-3">
+              <div class="flex justify-end gap-2">
+                <a uiButton size="sm" variant="secondary" [routerLink]="['products', product.id, 'edit']">{{ 'admin.edit' | translate }}</a>
+                <button uiButton size="sm" variant="danger" type="button" [loading]="deletingId() === product.id" (click)="remove(product)">
+                  {{ 'admin.delete' | translate }}
+                </button>
+              </div>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="px-4 py-10 text-center text-fg-muted">
+              @if (products.isLoading()) {
+                <ui-spinner [label]="'common.loading' | translate" />
+              } @else {
+                {{ 'products.emptyTitle' | translate }}
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-6">
+    <ui-paginator [total]="products.value().total" [pageSize]="pageSize" [(page)]="page" [labels]="paginatorLabels()" />
+  </div>
+}

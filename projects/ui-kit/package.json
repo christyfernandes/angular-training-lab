@@ -1,0 +1,12 @@
+{
+  "name": "@lab/ui-kit",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^22.3.0",
+    "@angular/core": "^22.3.0"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/public-api.ts"
+  }
+}

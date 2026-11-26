@@ -1,0 +1,52 @@
+<section class="mx-auto max-w-md">
+  <h1 class="text-3xl font-extrabold">{{ 'login.title' | translate }}</h1>
+  <p class="mt-1 text-fg-muted">{{ 'login.subtitle' | translate }}</p>
+
+  <form [formRoot]="loginForm" class="mt-6 flex flex-col gap-4 rounded-xl border border-line bg-surface p-6">
+    @for (error of loginForm().errors(); track error.kind) {
+      <ui-alert tone="danger">{{ error.message ?? '' | translate }}</ui-alert>
+    }
+
+    <div>
+      <label class="field-label" for="username">{{ 'login.username' | translate }}</label>
+      <input id="username" class="field-input" autocomplete="username" uiAutofocus [formField]="loginForm.username" />
+      @if (loginForm.username().touched()) {
+        @for (error of loginForm.username().errors(); track error.kind) {
+          <p class="field-error">{{ error.message ?? '' | translate }}</p>
+        }
+      }
+    </div>
+
+    <div>
+      <label class="field-label" for="password">{{ 'login.password' | translate }}</label>
+      <div class="flex gap-2">
+        <input
+          id="password"
+          class="field-input"
+          autocomplete="current-password"
+          [type]="showPassword() ? 'text' : 'password'"
+          [formField]="loginForm.password"
+        />
+        <button uiButton variant="secondary" type="button" (click)="showPassword.update((v) => !v)" [attr.aria-pressed]="showPassword()">
+          {{ (showPassword() ? 'login.hide' : 'login.show') | translate }}
+        </button>
+      </div>
+      @if (loginForm.password().touched()) {
+        @for (error of loginForm.password().errors(); track error.kind) {
+          <p class="field-error">{{ error.message ?? '' | translate }}</p>
+        }
+      }
+    </div>
+
+    <button uiButton block size="lg" type="submit" [loading]="loginForm().submitting()" [disabled]="loginForm().submitting()">
+      {{ 'login.submit' | translate }}
+    </button>
+  </form>
+
+  <ui-alert class="mt-4" [heading]="'login.demoTitle' | translate">
+    <p>{{ 'login.demoBody' | translate }}</p>
+    <button uiButton variant="secondary" size="sm" type="button" class="mt-2" (click)="fillDemoAccount()">
+      {{ 'login.useDemo' | translate }}
+    </button>
+  </ui-alert>
+</section>

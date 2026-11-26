@@ -1,0 +1,84 @@
+<section class="grid items-center gap-8 py-6 lg:grid-cols-[1.2fr_1fr]">
+  <div>
+    <h1 class="text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-6xl">{{ 'home.headline' | translate }}</h1>
+    <p class="mt-5 max-w-xl text-lg leading-relaxed text-fg-muted">{{ 'home.intro' | translate }}</p>
+    <div class="mt-7 flex flex-wrap gap-3">
+      <a uiButton size="lg" routerLink="/learn">{{ 'home.startLearning' | translate }}</a>
+      <a uiButton size="lg" variant="secondary" routerLink="/products">{{ 'home.browse' | translate }}</a>
+      <a uiButton size="lg" variant="secondary" routerLink="/lab">{{ 'home.openLab' | translate }}</a>
+    </div>
+  </div>
+
+  <!-- The app's folder structure, drawn with plain HTML + Tailwind theme tokens -->
+  <div class="rounded-2xl border border-line bg-surface p-5">
+    <p class="mb-3 text-sm font-semibold text-fg-muted">{{ 'home.layers.title' | translate }}</p>
+    <div class="grid gap-2 text-sm">
+      <div class="rounded-lg bg-primary px-4 py-3 text-on-primary">
+        <code class="block font-bold">features/</code>
+        <span class="opacity-90">{{ 'home.layers.features' | translate }}</span>
+      </div>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="rounded-lg bg-primary-soft px-4 py-3 text-fg">
+          <code class="block font-bold text-primary">layout/</code>
+          <span class="text-fg-muted">{{ 'home.layers.layout' | translate }}</span>
+        </div>
+        <div class="rounded-lg bg-primary-soft px-4 py-3 text-fg">
+          <code class="block font-bold text-primary">shared/</code>
+          <span class="text-fg-muted">{{ 'home.layers.shared' | translate }}</span>
+        </div>
+      </div>
+      <div class="rounded-lg border border-line px-4 py-3">
+        <code class="block font-bold">core/</code>
+        <span class="text-fg-muted">{{ 'home.layers.core' | translate }}</span>
+      </div>
+      <div class="rounded-lg bg-accent px-4 py-3 text-on-accent">
+        <code class="block font-bold">&#64;lab/ui-kit</code>
+        <span>{{ 'home.layers.uiKit' | translate }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Config-driven block: edit public/content/pages/home-promos.json, not this template. -->
+<app-content-region slug="home-promos" class="mt-10 block" />
+
+<section class="mt-14">
+  <h2 class="text-2xl font-bold">{{ 'home.conceptsTitle' | translate }}</h2>
+  <p class="mt-1 text-fg-muted">{{ 'home.conceptsBody' | translate }}</p>
+  <div class="mt-5 overflow-x-auto rounded-xl border border-line bg-surface">
+    <table class="w-full min-w-[640px] text-left text-sm">
+      <thead class="border-b border-line bg-surface-muted text-fg-muted">
+        <tr>
+          <th scope="col" class="px-4 py-3 font-semibold">{{ 'home.colConcept' | translate }}</th>
+          <th scope="col" class="px-4 py-3 font-semibold">{{ 'home.colSee' | translate }}</th>
+          <th scope="col" class="px-4 py-3 font-semibold">{{ 'home.colFile' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of concepts; track item.concept; let last = $last) {
+          <tr [class.border-b]="!last" class="border-line">
+            <td class="px-4 py-3 font-semibold">{{ item.concept }}</td>
+            <td class="px-4 py-3"><a [routerLink]="item.route" class="text-primary hover:underline">{{ item.route }}</a></td>
+            <td class="px-4 py-3"><code class="text-xs text-fg-muted">{{ item.file }}</code></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="mt-14">
+  <h2 class="text-2xl font-bold">{{ 'home.featured' | translate }}</h2>
+  <div class="mt-5">
+    <!-- The featured grid is its own lazy chunk, fetched when it scrolls into view. -->
+    @defer (on viewport) {
+      <app-featured-products />
+    } @placeholder {
+      <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        @for (i of [1, 2, 3, 4]; track i) {
+          <div class="skeleton aspect-[3/4]"></div>
+        }
+      </div>
+    }
+  </div>
+</section>

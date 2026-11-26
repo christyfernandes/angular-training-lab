@@ -1,0 +1,81 @@
+{
+  "slug": "festive-sale",
+  "title": { "en": "Festive sale", "hi": "त्योहार सेल" },
+  "description": { "en": "Seasonal offers page managed as JSON.", "hi": "JSON से संचालित मौसमी ऑफ़र पेज।" },
+  "version": 7,
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "title": { "en": "Festive sale: bright deals for the season", "hi": "त्योहार सेल: मौसम के शानदार ऑफ़र" },
+      "body": {
+        "en": "Everything on this page – text, order, products and the sign-up form – comes from festive-sale.json.",
+        "hi": "इस पेज की हर चीज़ – टेक्स्ट, क्रम, उत्पाद और साइन-अप फ़ॉर्म – festive-sale.json से आती है।"
+      },
+      "image": "/content/images/festive-gifts.svg",
+      "actions": [
+        { "label": { "en": "Shop phones", "hi": "फ़ोन खरीदें" }, "route": "/products", "queryParams": { "category": "smartphones" }, "variant": "secondary" }
+      ]
+    },
+    {
+      "id": "phones",
+      "type": "product-strip",
+      "title": { "en": "Phones on offer", "hi": "ऑफ़र पर फ़ोन" },
+      "query": { "category": "smartphones", "sort": "price-asc", "limit": 4 },
+      "seeAll": { "label": { "en": "See all phones", "hi": "सभी फ़ोन देखें" }, "route": "/products", "queryParams": { "category": "smartphones" }, "variant": "secondary" }
+    },
+    {
+      "id": "laptops",
+      "type": "product-strip",
+      "title": { "en": "Top-rated laptops", "hi": "सबसे ज़्यादा रेटिंग वाले लैपटॉप" },
+      "query": { "category": "laptops", "sort": "rating-desc", "limit": 4 }
+    },
+    {
+      "id": "why",
+      "type": "feature-grid",
+      "title": { "en": "Why shop the sale", "hi": "सेल में क्यों खरीदें" },
+      "columns": 3,
+      "items": [
+        { "title": { "en": "Free delivery", "hi": "मुफ़्त डिलीवरी" }, "body": { "en": "On orders above $50 during the sale.", "hi": "सेल के दौरान $50 से ज़्यादा के ऑर्डर पर।" } },
+        { "title": { "en": "30-day returns", "hi": "30 दिन में वापसी" }, "body": { "en": "Changed your mind? Send it back.", "hi": "मन बदल गया? लौटा दीजिए।" } },
+        { "title": { "en": "Member prices", "hi": "सदस्य कीमतें" }, "body": { "en": "Log in for an extra 5% off.", "hi": "अतिरिक्त 5% छूट के लिए लॉग इन करें।" }, "link": { "label": { "en": "Log in", "hi": "लॉग इन" }, "route": "/login", "variant": "secondary" } }
+      ]
+    },
+    {
+      "id": "members-only",
+      "type": "cta-banner",
+      "title": { "en": "Your member code: FESTIVE5", "hi": "आपका सदस्य कोड: FESTIVE5" },
+      "body": { "en": "Shown only to signed-in users via visibility.audience.", "hi": "visibility.audience से केवल लॉग इन उपयोगकर्ताओं को दिखता है।" },
+      "action": { "label": { "en": "Go to cart", "hi": "कार्ट पर जाएँ" }, "route": "/cart" },
+      "visibility": { "audience": "authenticated" }
+    },
+    {
+      "id": "faq",
+      "type": "faq",
+      "title": { "en": "Sale questions", "hi": "सेल से जुड़े सवाल" },
+      "items": [
+        { "question": { "en": "When does the sale end?", "hi": "सेल कब ख़त्म होगी?" }, "answer": { "en": "31 January 2027 at midnight IST. The banners hide themselves after that.", "hi": "31 जनवरी 2027, आधी रात (IST)। उसके बाद बैनर अपने-आप छिप जाते हैं।" } },
+        { "question": { "en": "Can I combine offers?", "hi": "क्या ऑफ़र जोड़ सकते हैं?" }, "answer": { "en": "The member code works on top of sale prices.", "hi": "सदस्य कोड सेल कीमतों के ऊपर भी काम करता है।" } }
+      ]
+    },
+    {
+      "id": "newsletter",
+      "type": "form",
+      "title": { "en": "Get the next sale first", "hi": "अगली सेल की ख़बर सबसे पहले पाएँ" },
+      "submitLabel": { "en": "Subscribe", "hi": "सदस्यता लें" },
+      "successMessage": { "en": "You're subscribed. Watch your inbox.", "hi": "सदस्यता हो गई। अपना इनबॉक्स देखते रहें।" },
+      "fields": [
+        { "key": "email", "type": "email", "label": { "en": "Email", "hi": "ईमेल" }, "placeholder": "you@example.com", "required": true },
+        {
+          "key": "interest", "type": "select", "label": { "en": "Most interested in", "hi": "सबसे ज़्यादा रुचि" },
+          "options": [
+            { "value": "phones", "label": { "en": "Phones", "hi": "फ़ोन" } },
+            { "value": "laptops", "label": { "en": "Laptops", "hi": "लैपटॉप" } },
+            { "value": "beauty", "label": { "en": "Beauty", "hi": "ब्यूटी" } }
+          ]
+        },
+        { "key": "consent", "type": "checkbox", "label": { "en": "Email me about sales. I can unsubscribe at any time.", "hi": "मुझे सेल के बारे में ईमेल भेजें। मैं कभी भी सदस्यता छोड़ सकता/सकती हूँ।" }, "required": true }
+      ]
+    }
+  ]
+}

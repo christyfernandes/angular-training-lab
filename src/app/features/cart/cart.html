@@ -1,0 +1,47 @@
+<h1 class="text-3xl font-extrabold">{{ 'cart.title' | translate }}</h1>
+
+@if (cart.isEmpty()) {
+  <div class="mt-8 rounded-xl border border-dashed border-line p-10 text-center">
+    <p class="text-lg font-semibold">{{ 'cart.emptyTitle' | translate }}</p>
+    <p class="mt-1 text-fg-muted">{{ 'cart.emptyBody' | translate }}</p>
+    <a uiButton routerLink="/products" class="mt-5">{{ 'home.browse' | translate }}</a>
+  </div>
+} @else {
+  <div class="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
+    <ul class="divide-y divide-line rounded-xl border border-line bg-surface">
+      @for (item of cart.items(); track item.productId) {
+        <li class="flex gap-4 p-4">
+          <img [ngSrc]="item.thumbnail" width="88" height="88" alt="" class="size-20 shrink-0 rounded-lg bg-surface-muted object-contain" />
+          <div class="flex flex-1 flex-col gap-2">
+            <a [routerLink]="['/products', item.productId]" class="font-semibold hover:text-primary">{{ item.title }}</a>
+            <p class="text-sm text-fg-muted">
+              {{ unitPrice(item) | currency: 'USD' : 'symbol' : '1.2-2' : locale() }} {{ 'cart.each' | translate }}
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="flex items-center rounded-lg border border-line" role="group" [attr.aria-label]="'cart.quantity' | translate">
+                <button type="button" class="size-8" [attr.aria-label]="'cart.decrease' | translate" (click)="cart.setQuantity(item.productId, item.quantity - 1)">−</button>
+                <span class="w-8 text-center text-sm font-semibold">{{ item.quantity }}</span>
+                <button type="button" class="size-8" [attr.aria-label]="'cart.increase' | translate" (click)="cart.setQuantity(item.productId, item.quantity + 1)">+</button>
+              </div>
+              <button type="button" class="text-sm font-semibold text-danger hover:underline" (click)="cart.remove(item.productId)">
+                {{ 'cart.remove' | translate }}
+              </button>
+            </div>
+          </div>
+          <p class="font-bold">{{ unitPrice(item) * item.quantity | currency: 'USD' : 'symbol' : '1.2-2' : locale() }}</p>
+        </li>
+      }
+    </ul>
+
+    <aside class="h-fit rounded-xl border border-line bg-surface p-5">
+      <h2 class="text-lg font-bold">{{ 'cart.summary' | translate }}</h2>
+      <dl class="mt-4 space-y-2 text-sm">
+        <div class="flex justify-between"><dt>{{ 'cart.items' | translate: { count: cart.count() } }}</dt><dd>{{ cart.subtotal() | currency: 'USD' : 'symbol' : '1.2-2' : locale() }}</dd></div>
+        <div class="flex justify-between text-success"><dt>{{ 'cart.savings' | translate }}</dt><dd>−{{ cart.savings() | currency: 'USD' : 'symbol' : '1.2-2' : locale() }}</dd></div>
+        <div class="flex justify-between border-t border-line pt-2 text-base font-bold"><dt>{{ 'cart.total' | translate }}</dt><dd>{{ cart.total() | currency: 'USD' : 'symbol' : '1.2-2' : locale() }}</dd></div>
+      </dl>
+      <button uiButton block size="lg" type="button" class="mt-5" (click)="checkout()">{{ 'cart.checkout' | translate }}</button>
+      <button uiButton block variant="ghost" type="button" class="mt-2" (click)="cart.clear()">{{ 'cart.clear' | translate }}</button>
+    </aside>
+  </div>
+}

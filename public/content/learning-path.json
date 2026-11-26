@@ -1,0 +1,1354 @@
+{
+  "version": 1,
+  "title": "Modern Angular for Professionals – learning path",
+  "intro": "Work through the stages in order. Each step is a read, a video, something to explore in the running app, code to study, an exercise or a self-check. Tick steps as you finish them; your progress is saved in this browser.",
+  "tracks": [
+    {
+      "id": "foundations",
+      "name": "Foundations",
+      "description": "New to Angular or to frontend frameworks: do every step in order (6 weeks)."
+    },
+    {
+      "id": "accelerated",
+      "name": "Accelerated",
+      "description": "Already fluent in a component framework: skim weeks 1–2 and spend the time on the accelerated exercises (3–4 weeks)."
+    }
+  ],
+  "concepts": [
+    {
+      "id": "typescript",
+      "name": "TypeScript essentials"
+    },
+    {
+      "id": "tooling",
+      "name": "Tooling, CLI and conventions"
+    },
+    {
+      "id": "components",
+      "name": "Components, inputs, outputs, content projection"
+    },
+    {
+      "id": "templates",
+      "name": "Templates and bindings"
+    },
+    {
+      "id": "control-flow",
+      "name": "Built-in control flow (@if, @for, @switch, @let, @defer)"
+    },
+    {
+      "id": "signals",
+      "name": "Signals: signal, computed, effect, linkedSignal, resource"
+    },
+    {
+      "id": "libraries",
+      "name": "Component libraries"
+    },
+    {
+      "id": "di",
+      "name": "Dependency injection"
+    },
+    {
+      "id": "state",
+      "name": "Signal-based state stores"
+    },
+    {
+      "id": "routing",
+      "name": "Routing and lazy loading"
+    },
+    {
+      "id": "http",
+      "name": "HttpClient and httpResource"
+    },
+    {
+      "id": "rxjs",
+      "name": "RxJS essentials"
+    },
+    {
+      "id": "interceptors",
+      "name": "HTTP interceptors"
+    },
+    {
+      "id": "guards",
+      "name": "Guards and resolvers"
+    },
+    {
+      "id": "forms",
+      "name": "Forms: Signal Forms and Reactive Forms"
+    },
+    {
+      "id": "pipes",
+      "name": "Pipes"
+    },
+    {
+      "id": "directives",
+      "name": "Directives"
+    },
+    {
+      "id": "i18n",
+      "name": "Translations (i18n)"
+    },
+    {
+      "id": "theming",
+      "name": "Theming with Tailwind tokens"
+    },
+    {
+      "id": "startup",
+      "name": "Startup logic and runtime config"
+    },
+    {
+      "id": "feature-flags",
+      "name": "Feature flags"
+    },
+    {
+      "id": "config-driven",
+      "name": "Config-driven pages and forms"
+    },
+    {
+      "id": "testing",
+      "name": "Unit testing"
+    },
+    {
+      "id": "performance",
+      "name": "Performance"
+    }
+  ],
+  "stages": [
+    {
+      "id": "week-1",
+      "label": "Week 1",
+      "title": "Foundations",
+      "goal": "Read and write components, templates, bindings and built-in control flow in TypeScript.",
+      "hours": 8,
+      "steps": [
+        {
+          "id": "w1-setup",
+          "kind": "setup",
+          "title": "Set up your machine and run Karkhana",
+          "files": [
+            "START-HERE.md",
+            "README.md"
+          ],
+          "lookFor": "Node 22.12+, Angular CLI 22, VS Code with the Angular Language Service, the app running on localhost:4200, all tests green.",
+          "minutes": 60,
+          "track": "both",
+          "concepts": [
+            "tooling"
+          ]
+        },
+        {
+          "id": "w1-ts",
+          "kind": "read",
+          "title": "TypeScript Handbook: everyday types, narrowing, classes, generics (skim what you know)",
+          "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+          "minutes": 120,
+          "track": "foundations",
+          "concepts": [
+            "typescript"
+          ]
+        },
+        {
+          "id": "w1-learn",
+          "kind": "read",
+          "title": "Learn Angular in your browser: the components, templates and control flow lessons",
+          "url": "https://angular.dev/tutorials/learn-angular",
+          "minutes": 120,
+          "track": "both",
+          "concepts": [
+            "components",
+            "templates"
+          ]
+        },
+        {
+          "id": "w1-ess",
+          "kind": "read",
+          "title": "Angular Essentials: components, templates and control flow pages",
+          "url": "https://angular.dev/essentials",
+          "minutes": 40,
+          "track": "both",
+          "concepts": [
+            "components",
+            "templates"
+          ]
+        },
+        {
+          "id": "w1-watch",
+          "kind": "watch",
+          "title": "Angular – The Complete Guide (Udemy): getting started and essentials sections",
+          "url": "https://www.udemy.com/course/the-complete-guide-to-angular-2/",
+          "minutes": 150,
+          "track": "foundations",
+          "concepts": [
+            "components",
+            "templates"
+          ],
+          "note": "No course licence? Watch the matching topics on the official Angular YouTube channel instead."
+        },
+        {
+          "id": "w1-lab",
+          "kind": "explore",
+          "title": "Concepts Lab: Bindings",
+          "route": "/lab/bindings",
+          "files": [
+            "src/app/features/concepts-lab/bindings-demo.html",
+            "src/app/features/concepts-lab/bindings-demo.ts"
+          ],
+          "lookFor": "Every binding type in panel 1; $index/$first/$even in @for; @switch; @let; content projection into ui-card.",
+          "minutes": 45,
+          "track": "both",
+          "concepts": [
+            "templates",
+            "control-flow"
+          ]
+        },
+        {
+          "id": "w1-card",
+          "kind": "study",
+          "title": "The product card: a presentational component",
+          "files": [
+            "src/app/features/products/components/product-card.ts"
+          ],
+          "lookFor": "input.required(), output(), @let, chained pipes, NgOptimizedImage, no injected services.",
+          "minutes": 40,
+          "track": "both",
+          "concepts": [
+            "components",
+            "pipes"
+          ],
+          "route": "/products"
+        },
+        {
+          "id": "w1-ex-f",
+          "kind": "exercise",
+          "title": "Add a clear button to the search box that empties the search model and hides when the box is empty",
+          "track": "foundations",
+          "files": [
+            "src/app/features/products/components/product-filters.ts"
+          ],
+          "minutes": 120,
+          "concepts": [
+            "templates",
+            "components"
+          ]
+        },
+        {
+          "id": "w1-ex-a",
+          "kind": "exercise",
+          "title": "Move the home concept list into a typed concepts.ts file and add a text filter with computed()",
+          "track": "accelerated",
+          "files": [
+            "src/app/features/home/home.ts",
+            "src/app/features/home/home.html"
+          ],
+          "minutes": 120,
+          "concepts": [
+            "signals",
+            "templates"
+          ]
+        },
+        {
+          "id": "w1-check",
+          "kind": "check",
+          "title": "Self-check: answer without looking",
+          "questions": [
+            "What is the difference between [value], [attr.aria-label] and [class.x]?",
+            "Why does @for require track, and what makes a good track expression?",
+            "When would you use @let instead of a component property?"
+          ],
+          "minutes": 15,
+          "track": "both",
+          "concepts": []
+        }
+      ]
+    },
+    {
+      "id": "week-2",
+      "label": "Week 2",
+      "title": "Signals and components",
+      "goal": "Model state with signals and build reusable components with inputs, outputs, model() and content projection.",
+      "hours": 9,
+      "checkpoint": {
+        "title": "Checkpoint 1: components and signals",
+        "submit": "Your week 1–2 exercise PRs and a 10-minute demo of the library component you built."
+      },
+      "steps": [
+        {
+          "id": "w2-signals",
+          "kind": "read",
+          "title": "Signals guide: signal, computed, effect, linkedSignal, untracked",
+          "url": "https://angular.dev/guide/signals",
+          "minutes": 60,
+          "track": "both",
+          "concepts": [
+            "signals"
+          ]
+        },
+        {
+          "id": "w2-components",
+          "kind": "read",
+          "title": "Components guide: inputs, outputs, model inputs, content projection",
+          "url": "https://angular.dev/guide/components",
+          "minutes": 60,
+          "track": "both",
+          "concepts": [
+            "components"
+          ]
+        },
+        {
+          "id": "w2-libs",
+          "kind": "read",
+          "title": "Creating libraries",
+          "url": "https://angular.dev/tools/libraries/creating-libraries",
+          "minutes": 30,
+          "track": "accelerated",
+          "concepts": [
+            "libraries"
+          ]
+        },
+        {
+          "id": "w2-watch",
+          "kind": "watch",
+          "title": "Angular Signals by Deborah Kurata (Pluralsight)",
+          "url": "https://www.pluralsight.com/library/courses/angular-signals",
+          "minutes": 180,
+          "track": "both",
+          "concepts": [
+            "signals"
+          ],
+          "note": "No course licence? Watch the matching topics on the official Angular YouTube channel instead."
+        },
+        {
+          "id": "w2-lab",
+          "kind": "explore",
+          "title": "Concepts Lab: Signals",
+          "route": "/lab/signals",
+          "files": [
+            "src/app/features/concepts-lab/signals-demo.ts"
+          ],
+          "lookFor": "computed() caching, effect() with untracked(), linkedSignal() resetting when the course changes, resource() status, reload and abort.",
+          "minutes": 60,
+          "track": "both",
+          "concepts": [
+            "signals"
+          ]
+        },
+        {
+          "id": "w2-uikit",
+          "kind": "study",
+          "title": "The ui-kit library",
+          "files": [
+            "projects/ui-kit/src/lib/button/button.ts",
+            "projects/ui-kit/src/lib/card/card.ts",
+            "projects/ui-kit/src/lib/paginator/paginator.ts",
+            "projects/ui-kit/src/public-api.ts"
+          ],
+          "lookFor": "Attribute selectors on native elements, booleanAttribute, multi-slot <ng-content>, model() for two-way binding, translated labels passed in from the app.",
+          "minutes": 60,
+          "track": "both",
+          "concepts": [
+            "components",
+            "libraries"
+          ],
+          "route": "/lab/bindings"
+        },
+        {
+          "id": "w2-ex-f",
+          "kind": "exercise",
+          "title": "Add a ui-empty-state component to the library and use it in the product list and the cart",
+          "track": "foundations",
+          "files": [
+            "projects/ui-kit/src/lib/",
+            "src/app/features/products/product-list/",
+            "src/app/features/cart/"
+          ],
+          "minutes": 180,
+          "concepts": [
+            "components",
+            "libraries"
+          ]
+        },
+        {
+          "id": "w2-ex-a",
+          "kind": "exercise",
+          "title": "Build ui-tabs / ui-tab with contentChildren() and use it on the product page",
+          "track": "accelerated",
+          "files": [
+            "projects/ui-kit/src/lib/",
+            "src/app/features/products/product-detail/"
+          ],
+          "minutes": 240,
+          "concepts": [
+            "components",
+            "libraries",
+            "signals"
+          ]
+        },
+        {
+          "id": "w2-check",
+          "kind": "check",
+          "title": "Self-check: answer without looking",
+          "questions": [
+            "Why should effect() not be used to set another signal?",
+            "What does model() give you that input() does not?",
+            "Why does the ui-kit contain no colour values?"
+          ],
+          "minutes": 15,
+          "track": "both",
+          "concepts": []
+        }
+      ]
+    },
+    {
+      "id": "week-3",
+      "label": "Week 3",
+      "title": "Services, DI, state and routing",
+      "goal": "Share state through services, understand injector scopes, and structure an app with lazy routes.",
+      "hours": 8,
+      "steps": [
+        {
+          "id": "w3-di",
+          "kind": "read",
+          "title": "Dependency injection guide",
+          "url": "https://angular.dev/guide/di",
+          "minutes": 60,
+          "track": "both",
+          "concepts": [
+            "di"
+          ]
+        },
+        {
+          "id": "w3-routing",
+          "kind": "read",
+          "title": "Routing guide: routes, lazy loading, child routes, input binding",
+          "url": "https://angular.dev/guide/routing",
+          "minutes": 60,
+          "track": "both",
+          "concepts": [
+            "routing"
+          ]
+        },
+        {
+          "id": "w3-watch",
+          "kind": "watch",
+          "title": "Angular – The Complete Guide (Udemy): services, DI and routing sections",
+          "url": "https://www.udemy.com/course/the-complete-guide-to-angular-2/",
+          "minutes": 150,
+          "track": "both",
+          "concepts": [
+            "di",
+            "routing"
+          ],
+          "note": "No course licence? Watch the matching topics on the official Angular YouTube channel instead."
+        },
+        {
+          "id": "w3-lab",
+          "kind": "explore",
+          "title": "Concepts Lab: Dependency injection",
+          "route": "/lab/di",
+          "files": [
+            "src/app/features/concepts-lab/di-demo.ts",
+            "src/app/features/concepts-lab/counter-store.ts"
+          ],
+          "lookFor": "Two panels, two LocalCounter ids, one SharedCounter id; InjectionToken factories; the ReportExporter chunk appearing in the Network tab only on click (injectAsync).",
+          "minutes": 45,
+          "track": "both",
+          "concepts": [
+            "di"
+          ]
+        },
+        {
+          "id": "w3-cart",
+          "kind": "study",
+          "title": "The cart signal store",
+          "files": [
+            "src/app/core/services/cart.store.ts",
+            "src/app/features/cart/cart.ts"
+          ],
+          "lookFor": "Private writable signal, public readonly view, immutable updates, computed totals, effect() persisting to storage.",
+          "minutes": 40,
+          "track": "both",
+          "concepts": [
+            "state",
+            "signals"
+          ],
+          "route": "/cart"
+        },
+        {
+          "id": "w3-routes",
+          "kind": "study",
+          "title": "Routes and lazy loading",
+          "files": [
+            "src/app/app.routes.ts",
+            "src/app/features/concepts-lab/lab.routes.ts",
+            "src/app/features/concepts-lab/lab-layout.ts"
+          ],
+          "lookFor": "loadComponent with default exports, loadChildren, nested <router-outlet>, routerLinkActive, titles as translation keys.",
+          "minutes": 40,
+          "track": "both",
+          "concepts": [
+            "routing"
+          ]
+        },
+        {
+          "id": "w3-ex-f",
+          "kind": "exercise",
+          "title": "Create a \"Recently viewed\" signal store (max 5, persisted) fed by the product page and shown on home",
+          "track": "foundations",
+          "files": [
+            "src/app/core/services/",
+            "src/app/features/products/product-detail/",
+            "src/app/features/home/"
+          ],
+          "minutes": 180,
+          "concepts": [
+            "state",
+            "signals"
+          ]
+        },
+        {
+          "id": "w3-ex-a",
+          "kind": "exercise",
+          "title": "Add a wishlist: store, /wishlist route behind authGuard, header badge, toggle on the product card via output()",
+          "track": "accelerated",
+          "files": [
+            "src/app/core/services/",
+            "src/app/app.routes.ts",
+            "src/app/layout/header.html"
+          ],
+          "minutes": 240,
+          "concepts": [
+            "state",
+            "routing",
+            "guards"
+          ]
+        },
+        {
+          "id": "w3-check",
+          "kind": "check",
+          "title": "Self-check: answer without looking",
+          "questions": [
+            "What changes when a service is listed in a component's providers instead of using @Service()?",
+            "Why are page components exported as default?",
+            "Where is the single source of truth for the cart, and who may change it?"
+          ],
+          "minutes": 15,
+          "track": "both",
+          "concepts": []
+        }
+      ]
+    },
+    {
+      "id": "week-4",
+      "label": "Week 4",
+      "title": "Data and async",
+      "goal": "Fetch, cache and protect data: HttpClient, httpResource, interceptors, guards, resolvers and the RxJS you still need.",
+      "hours": 10,
+      "checkpoint": {
+        "title": "Checkpoint 2: data, routing and DI",
+        "submit": "Your week 3–4 exercise PRs and a short walkthrough of one request from component to API and back."
+      },
+      "steps": [
+        {
+          "id": "w4-http",
+          "kind": "read",
+          "title": "HTTP client guide: requests, interceptors, HttpContext",
+          "url": "https://angular.dev/guide/http",
+          "minutes": 60,
+          "track": "both",
+          "concepts": [
+            "http",
+            "interceptors"
+          ]
+        },
+        {
+          "id": "w4-httpres",
+          "kind": "read",
+          "title": "Reactive data fetching with httpResource",
+          "url": "https://angular.dev/guide/http/http-resource",
+          "minutes": 30,
+          "track": "both",
+          "concepts": [
+            "http",
+            "signals"
+          ]
+        },
+        {
+          "id": "w4-resource",
+          "kind": "read",
+          "title": "Async reactivity with resource()",
+          "url": "https://angular.dev/guide/signals/resource",
+          "minutes": 30,
+          "track": "both",
+          "concepts": [
+            "signals"
+          ]
+        },
+        {
+          "id": "w4-guards",
+          "kind": "read",
+          "title": "Routing guide: guards and resolvers sections",
+          "url": "https://angular.dev/guide/routing",
+          "minutes": 40,
+          "track": "both",
+          "concepts": [
+            "guards"
+          ]
+        },
+        {
+          "id": "w4-watch",
+          "kind": "watch",
+          "title": "Angular: RxJS for Reactive Programming by Deborah Kurata (Pluralsight)",
+          "url": "https://www.pluralsight.com/courses/angular-rxjs-reactive-programming",
+          "minutes": 90,
+          "track": "both",
+          "concepts": [
+            "rxjs"
+          ],
+          "note": "No course licence? Watch the matching topics on the official Angular YouTube channel instead."
+        },
+        {
+          "id": "w4-products",
+          "kind": "explore",
+          "title": "Product list: URL-driven state and debounced search",
+          "route": "/products",
+          "files": [
+            "src/app/features/products/product-list/product-list.ts",
+            "src/app/features/products/product-list/product-list.html",
+            "src/app/core/services/product.service.ts"
+          ],
+          "lookFor": "Query params bound to inputs, linkedSignal for the search box, toObservable + debounceTime, httpResource re-fetching, error() checked before value().",
+          "minutes": 60,
+          "track": "both",
+          "concepts": [
+            "http",
+            "routing",
+            "rxjs"
+          ]
+        },
+        {
+          "id": "w4-interceptors",
+          "kind": "study",
+          "title": "The three interceptors",
+          "files": [
+            "src/app/app.config.ts",
+            "src/app/core/interceptors/loading.interceptor.ts",
+            "src/app/core/interceptors/auth.interceptor.ts",
+            "src/app/core/interceptors/error.interceptor.ts"
+          ],
+          "lookFor": "Order of execution, req.clone(), HttpContextToken opt-outs, tokens sent only to our API host, errors re-thrown.",
+          "minutes": 45,
+          "track": "both",
+          "concepts": [
+            "interceptors"
+          ]
+        },
+        {
+          "id": "w4-guards-code",
+          "kind": "study",
+          "title": "Guards and the resolver",
+          "files": [
+            "src/app/core/guards/auth.guard.ts",
+            "src/app/core/guards/unsaved-changes.guard.ts",
+            "src/app/core/resolvers/product.resolver.ts"
+          ],
+          "lookFor": "canMatch vs canActivate, guard factories, returning UrlTree or RedirectCommand, resolved data arriving as an input.",
+          "minutes": 40,
+          "track": "both",
+          "concepts": [
+            "guards",
+            "routing"
+          ],
+          "route": "/account"
+        },
+        {
+          "id": "w4-ex-f",
+          "kind": "exercise",
+          "title": "Add /categories/:slug using router input binding and httpResource, with a retry button on error",
+          "track": "foundations",
+          "files": [
+            "src/app/app.routes.ts",
+            "src/app/features/products/"
+          ],
+          "minutes": 180,
+          "concepts": [
+            "http",
+            "routing"
+          ]
+        },
+        {
+          "id": "w4-ex-a",
+          "kind": "exercise",
+          "title": "Add a caching interceptor driven by an HttpContextToken and a refresh-token flow using /auth/refresh",
+          "track": "accelerated",
+          "files": [
+            "src/app/core/interceptors/",
+            "src/app/core/services/auth.service.ts"
+          ],
+          "minutes": 300,
+          "concepts": [
+            "interceptors",
+            "http",
+            "rxjs"
+          ]
+        },
+        {
+          "id": "w4-check",
+          "kind": "check",
+          "title": "Self-check: answer without looking",
+          "questions": [
+            "What happens to an in-flight httpResource request when its params change?",
+            "A request passes loading → auth → error interceptors. In what order do they see the response?",
+            "Why does /admin use canMatch rather than canActivate?"
+          ],
+          "minutes": 15,
+          "track": "both",
+          "concepts": []
+        }
+      ]
+    },
+    {
+      "id": "week-5",
+      "label": "Week 5",
+      "title": "Forms, pipes, directives, i18n and theming",
+      "goal": "Build validated forms both ways, write your own pipes and directives, and make the app translatable and themeable.",
+      "hours": 9,
+      "steps": [
+        {
+          "id": "w5-sf",
+          "kind": "read",
+          "title": "Signal Forms essentials and overview",
+          "url": "https://angular.dev/essentials/signal-forms",
+          "minutes": 45,
+          "track": "both",
+          "concepts": [
+            "forms"
+          ]
+        },
+        {
+          "id": "w5-cmp",
+          "kind": "read",
+          "title": "Forms comparison: Signal vs Reactive vs Template-driven",
+          "url": "https://angular.dev/guide/forms/signals/comparison",
+          "minutes": 20,
+          "track": "both",
+          "concepts": [
+            "forms"
+          ]
+        },
+        {
+          "id": "w5-reactive",
+          "kind": "read",
+          "title": "Reactive forms guide",
+          "url": "https://angular.dev/guide/forms/reactive-forms",
+          "minutes": 45,
+          "track": "both",
+          "concepts": [
+            "forms"
+          ]
+        },
+        {
+          "id": "w5-pipes",
+          "kind": "read",
+          "title": "Pipes guide",
+          "url": "https://angular.dev/guide/templates/pipes",
+          "minutes": 20,
+          "track": "both",
+          "concepts": [
+            "pipes"
+          ]
+        },
+        {
+          "id": "w5-directives",
+          "kind": "read",
+          "title": "Directives guide: attribute and structural directives",
+          "url": "https://angular.dev/guide/directives",
+          "minutes": 30,
+          "track": "both",
+          "concepts": [
+            "directives"
+          ]
+        },
+        {
+          "id": "w5-i18n",
+          "kind": "read",
+          "title": "ngx-translate documentation (v18)",
+          "url": "https://ngx-translate.org",
+          "minutes": 30,
+          "track": "both",
+          "concepts": [
+            "i18n"
+          ]
+        },
+        {
+          "id": "w5-tw",
+          "kind": "read",
+          "title": "Using Tailwind CSS with Angular",
+          "url": "https://angular.dev/guide/tailwind",
+          "minutes": 15,
+          "track": "both",
+          "concepts": [
+            "theming"
+          ]
+        },
+        {
+          "id": "w5-watch",
+          "kind": "watch",
+          "title": "Angular Signals In Depth (Angular 22) on Udemy: forms and signal patterns sections",
+          "url": "https://www.udemy.com/course/angular-signals/",
+          "minutes": 120,
+          "track": "accelerated",
+          "concepts": [
+            "forms",
+            "signals"
+          ],
+          "note": "No course licence? Watch the matching topics on the official Angular YouTube channel instead."
+        },
+        {
+          "id": "w5-login",
+          "kind": "explore",
+          "title": "Login: Signal Forms",
+          "route": "/login",
+          "files": [
+            "src/app/features/auth/login.ts",
+            "src/app/features/auth/login.html"
+          ],
+          "lookFor": "The model signal, schema validators, [formField], [formRoot], the async submit action returning a server error.",
+          "minutes": 40,
+          "track": "both",
+          "concepts": [
+            "forms"
+          ]
+        },
+        {
+          "id": "w5-editor",
+          "kind": "explore",
+          "title": "Product editor: Reactive Forms",
+          "route": "/admin/products/new",
+          "files": [
+            "src/app/features/admin/product-editor.ts",
+            "src/app/features/admin/product-editor.html"
+          ],
+          "lookFor": "NonNullableFormBuilder, FormArray of tags, a custom validator, toSignal(valueChanges) for the live preview, HasUnsavedChanges for the guard. Log in as emilys first.",
+          "minutes": 45,
+          "track": "both",
+          "concepts": [
+            "forms",
+            "guards"
+          ]
+        },
+        {
+          "id": "w5-pipes-lab",
+          "kind": "explore",
+          "title": "Concepts Lab: Pipes",
+          "route": "/lab/pipes",
+          "files": [
+            "src/app/features/concepts-lab/pipes-demo.ts",
+            "src/app/shared/pipes/discount-price.pipe.ts",
+            "projects/ui-kit/src/lib/pipes/truncate.pipe.ts"
+          ],
+          "lookFor": "Locale passed as an argument, pure pipes, chaining, async, i18nPlural.",
+          "minutes": 30,
+          "track": "both",
+          "concepts": [
+            "pipes",
+            "i18n"
+          ]
+        },
+        {
+          "id": "w5-theme-i18n",
+          "kind": "study",
+          "title": "Theming and translations",
+          "files": [
+            "src/styles.css",
+            "src/app/core/services/theme.service.ts",
+            "src/app/core/services/language.service.ts",
+            "src/app/core/router/translated-title.strategy.ts",
+            "public/i18n/en.json",
+            "src/app/shared/directives/has-role.directive.ts"
+          ],
+          "lookFor": "The token contract and @theme inline, .dark and data-brand on <html>, runtime language switching, translated tab titles, a structural directive.",
+          "minutes": 60,
+          "track": "both",
+          "concepts": [
+            "theming",
+            "i18n",
+            "directives"
+          ]
+        },
+        {
+          "id": "w5-ex-f",
+          "kind": "exercise",
+          "title": "Add a third language and a relativeTime pipe used on reviews",
+          "track": "foundations",
+          "files": [
+            "public/i18n/",
+            "src/app/core/services/language.service.ts",
+            "src/app/shared/pipes/"
+          ],
+          "minutes": 180,
+          "concepts": [
+            "i18n",
+            "pipes"
+          ]
+        },
+        {
+          "id": "w5-ex-a",
+          "kind": "exercise",
+          "title": "Rewrite the product editor with Signal Forms and add a fourth brand palette that passes WCAG AA",
+          "track": "accelerated",
+          "files": [
+            "src/app/features/admin/product-editor.ts",
+            "src/styles.css"
+          ],
+          "minutes": 300,
+          "concepts": [
+            "forms",
+            "theming"
+          ]
+        },
+        {
+          "id": "w5-check",
+          "kind": "check",
+          "title": "Self-check: answer without looking",
+          "questions": [
+            "When would you choose Reactive Forms over Signal Forms today?",
+            "Why is the locale passed to pipes as an argument?",
+            "Which files change when you add a new brand palette?"
+          ],
+          "minutes": 15,
+          "track": "both",
+          "concepts": []
+        }
+      ]
+    },
+    {
+      "id": "module-config",
+      "label": "Module",
+      "title": "Startup logic and config-driven content",
+      "goal": "Prepare the app before first render, run one build in every environment, and render pages and forms from JSON.",
+      "hours": 6,
+      "steps": [
+        {
+          "id": "m-readme",
+          "kind": "study",
+          "title": "README: \"Startup logic\" and \"Config-driven content\" sections",
+          "minutes": 20,
+          "track": "both",
+          "concepts": [
+            "startup",
+            "config-driven"
+          ],
+          "files": [
+            "README.md"
+          ],
+          "lookFor": "How startup is ordered, why config is fetched at runtime, the JSON page contract and the four steps to add a section type."
+        },
+        {
+          "id": "m-startup",
+          "kind": "explore",
+          "title": "Concepts Lab: Startup and config",
+          "route": "/lab/startup",
+          "files": [
+            "src/app/core/startup/app-init.service.ts",
+            "src/app/core/config/app-config.service.ts",
+            "src/app/core/config/parse-app-config.ts",
+            "public/config/app-config.json"
+          ],
+          "lookFor": "Ordered, timed steps; HttpBackend skipping interceptors; injector.get() after config loads; defaults when the file is missing. Try it: turn conceptsLab off in app-config.json and reload.",
+          "minutes": 60,
+          "track": "both",
+          "concepts": [
+            "startup",
+            "feature-flags"
+          ]
+        },
+        {
+          "id": "m-pages",
+          "kind": "explore",
+          "title": "Config-driven pages",
+          "route": "/pages/festive-sale",
+          "files": [
+            "src/app/features/content/engine/",
+            "public/content/pages/festive-sale.json",
+            "public/content/pages/home-promos.json"
+          ],
+          "lookFor": "parsePageConfig → isVisible → SECTION_REGISTRY → NgComponentOutlet; scheduled and members-only sections; the expired banner that stays hidden.",
+          "minutes": 60,
+          "track": "both",
+          "concepts": [
+            "config-driven"
+          ]
+        },
+        {
+          "id": "m-forms",
+          "kind": "explore",
+          "title": "Config-driven forms",
+          "route": "/pages/about-the-lab",
+          "files": [
+            "src/app/features/content/engine/dynamic-form.ts",
+            "src/app/features/content/sections/form-section.ts",
+            "public/content/pages/about-the-lab.json"
+          ],
+          "lookFor": "buildFormGroup() from field definitions, translated error messages, the invalid section skipped with a console warning.",
+          "minutes": 40,
+          "track": "both",
+          "concepts": [
+            "config-driven",
+            "forms"
+          ]
+        },
+        {
+          "id": "m-ex-f1",
+          "kind": "exercise",
+          "title": "Add a back-to-school campaign page using existing section types, scheduled, with a header link in app-config.json",
+          "track": "foundations",
+          "files": [
+            "public/content/pages/",
+            "public/config/app-config.json"
+          ],
+          "minutes": 90,
+          "concepts": [
+            "config-driven"
+          ]
+        },
+        {
+          "id": "m-ex-f2",
+          "kind": "exercise",
+          "title": "Add a testimonials section type in four steps, with a unit test for its validation",
+          "track": "foundations",
+          "files": [
+            "src/app/features/content/engine/",
+            "src/app/features/content/sections/"
+          ],
+          "minutes": 180,
+          "concepts": [
+            "config-driven",
+            "components"
+          ]
+        },
+        {
+          "id": "m-ex-a1",
+          "kind": "exercise",
+          "title": "Add a maintenance mode to the runtime config with a guard and a startup log entry",
+          "track": "accelerated",
+          "files": [
+            "src/app/core/config/",
+            "src/app/core/startup/",
+            "src/app/app.routes.ts"
+          ],
+          "minutes": 180,
+          "concepts": [
+            "startup",
+            "guards",
+            "feature-flags"
+          ]
+        },
+        {
+          "id": "m-ex-a2",
+          "kind": "exercise",
+          "title": "Post form sections to an optional submitUrl, show server errors per field, add showWhen conditional fields",
+          "track": "accelerated",
+          "files": [
+            "src/app/features/content/"
+          ],
+          "minutes": 300,
+          "concepts": [
+            "config-driven",
+            "forms"
+          ]
+        },
+        {
+          "id": "m-check",
+          "kind": "check",
+          "title": "Self-check: answer without looking",
+          "questions": [
+            "Why load runtime config with HttpBackend instead of the normal HttpClient?",
+            "What breaks if AuthService is injected as a field of AppInitService?",
+            "When should a screen NOT be config-driven?"
+          ],
+          "minutes": 15,
+          "track": "both",
+          "concepts": []
+        }
+      ]
+    },
+    {
+      "id": "week-6",
+      "label": "Week 6",
+      "title": "Quality, performance and the capstone",
+      "goal": "Test what you build, ship it fast, and prove it end to end in the capstone.",
+      "hours": 10,
+      "checkpoint": {
+        "title": "Checkpoint 3: capstone demo",
+        "submit": "Your capstone PR and a 15-minute live demo to the group."
+      },
+      "steps": [
+        {
+          "id": "w6-testing",
+          "kind": "read",
+          "title": "Testing guide (Vitest and TestBed)",
+          "url": "https://angular.dev/guide/testing",
+          "minutes": 60,
+          "track": "both",
+          "concepts": [
+            "testing"
+          ]
+        },
+        {
+          "id": "w6-defer",
+          "kind": "read",
+          "title": "Deferrable views",
+          "url": "https://angular.dev/guide/templates/defer",
+          "minutes": 20,
+          "track": "both",
+          "concepts": [
+            "performance"
+          ]
+        },
+        {
+          "id": "w6-img",
+          "kind": "read",
+          "title": "Image optimization with NgOptimizedImage",
+          "url": "https://angular.dev/guide/image-optimization",
+          "minutes": 20,
+          "track": "both",
+          "concepts": [
+            "performance"
+          ]
+        },
+        {
+          "id": "w6-style",
+          "kind": "read",
+          "title": "Angular style guide",
+          "url": "https://angular.dev/style-guide",
+          "minutes": 30,
+          "track": "both",
+          "concepts": [
+            "tooling"
+          ]
+        },
+        {
+          "id": "w6-watch",
+          "kind": "watch",
+          "title": "Angular v22 release event and key resources",
+          "url": "https://angular.dev/events/v22",
+          "minutes": 45,
+          "track": "both",
+          "concepts": [
+            "tooling"
+          ]
+        },
+        {
+          "id": "w6-specs",
+          "kind": "study",
+          "title": "How the tests are written",
+          "files": [
+            "src/app/core/services/cart.store.spec.ts",
+            "src/app/core/interceptors/auth.interceptor.spec.ts",
+            "src/app/core/guards/auth.guard.spec.ts",
+            "projects/ui-kit/src/lib/paginator/paginator.spec.ts",
+            "src/app/core/config/app-config.service.spec.ts"
+          ],
+          "lookFor": "Faking dependencies through DI, TestBed.runInInjectionContext for guards, HttpTestingController, setInput() for signal inputs.",
+          "minutes": 60,
+          "track": "both",
+          "concepts": [
+            "testing"
+          ]
+        },
+        {
+          "id": "w6-perf",
+          "kind": "study",
+          "title": "Performance in practice",
+          "files": [
+            "src/app/features/products/product-detail/product-detail.html",
+            "src/app/features/home/home.html",
+            "angular.json"
+          ],
+          "lookFor": "@defer (on viewport; prefetch on idle), priority images, budgets. Run npm run build and read the lazy chunk list.",
+          "minutes": 40,
+          "track": "both",
+          "concepts": [
+            "performance"
+          ],
+          "route": "/products/1"
+        },
+        {
+          "id": "w6-ex-f",
+          "kind": "exercise",
+          "title": "Write unit tests for DiscountPricePipe, LanguageService and ProductCard",
+          "track": "foundations",
+          "files": [
+            "src/app/shared/pipes/",
+            "src/app/core/services/",
+            "src/app/features/products/components/"
+          ],
+          "minutes": 180,
+          "concepts": [
+            "testing"
+          ]
+        },
+        {
+          "id": "w6-ex-a",
+          "kind": "exercise",
+          "title": "Test the product list with HttpTestingController and the error interceptor's 401 handling; npm pack the ui-kit and use it in a fresh app",
+          "track": "accelerated",
+          "files": [
+            "src/app/features/products/product-list/",
+            "src/app/core/interceptors/",
+            "projects/ui-kit/"
+          ],
+          "minutes": 300,
+          "concepts": [
+            "testing",
+            "libraries"
+          ]
+        },
+        {
+          "id": "w6-capstone",
+          "kind": "exercise",
+          "title": "Capstone: a Recipes area on DummyJSON – URL-driven list, resolver detail page, favourites store, translations, theme tokens only, at least four unit tests",
+          "track": "both",
+          "files": [
+            "src/app/features/"
+          ],
+          "minutes": 600,
+          "concepts": [
+            "http",
+            "routing",
+            "state",
+            "i18n",
+            "testing"
+          ],
+          "doneWhen": "Demoed at Checkpoint 3."
+        },
+        {
+          "id": "w6-check",
+          "kind": "check",
+          "title": "Self-check: answer without looking",
+          "questions": [
+            "What does TestBed.runInInjectionContext let you test?",
+            "Which part of the home page is a separate JavaScript chunk, and why?",
+            "What would you check first if the production bundle crossed its budget?"
+          ],
+          "minutes": 15,
+          "track": "both",
+          "concepts": []
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "title": "Learn Angular in your browser",
+      "url": "https://angular.dev/tutorials/learn-angular",
+      "type": "Interactive tutorial",
+      "cost": "Free",
+      "bestFor": "First contact, no setup"
+    },
+    {
+      "title": "Angular Essentials",
+      "url": "https://angular.dev/essentials",
+      "type": "Reading",
+      "cost": "Free",
+      "bestFor": "A fast tour of every core concept"
+    },
+    {
+      "title": "Angular Playground",
+      "url": "https://angular.dev/playground",
+      "type": "Online sandbox",
+      "cost": "Free",
+      "bestFor": "Trying a snippet without a project"
+    },
+    {
+      "title": "Angular v22 release event",
+      "url": "https://angular.dev/events/v22",
+      "type": "Video",
+      "cost": "Free",
+      "bestFor": "What changed in v22"
+    },
+    {
+      "title": "Angular on YouTube",
+      "url": "https://www.youtube.com/angular",
+      "type": "Video channel",
+      "cost": "Free",
+      "bestFor": "Official talks and feature deep dives"
+    },
+    {
+      "title": "Angular – The Complete Guide (Maximilian Schwarzmüller, Udemy)",
+      "url": "https://www.udemy.com/course/the-complete-guide-to-angular-2/",
+      "type": "Video course",
+      "cost": "Paid",
+      "bestFor": "Foundations track, end to end"
+    },
+    {
+      "title": "Angular Signals (Deborah Kurata, Pluralsight)",
+      "url": "https://www.pluralsight.com/library/courses/angular-signals",
+      "type": "Video course",
+      "cost": "Paid",
+      "bestFor": "Week 2 signals deep dive"
+    },
+    {
+      "title": "Angular: RxJS for Reactive Programming (Deborah Kurata, Pluralsight)",
+      "url": "https://www.pluralsight.com/courses/angular-rxjs-reactive-programming",
+      "type": "Video course",
+      "cost": "Paid",
+      "bestFor": "Week 4 RxJS"
+    },
+    {
+      "title": "Angular Signals In Depth (Angular 22, Udemy)",
+      "url": "https://www.udemy.com/course/angular-signals/",
+      "type": "Video course",
+      "cost": "Paid",
+      "bestFor": "Accelerated track signal patterns"
+    },
+    {
+      "title": "Signal Forms overview",
+      "url": "https://angular.dev/guide/forms/signals/overview",
+      "type": "Reading",
+      "cost": "Free",
+      "bestFor": "Choosing and using Signal Forms"
+    },
+    {
+      "title": "httpResource guide",
+      "url": "https://angular.dev/guide/http/http-resource",
+      "type": "Reading",
+      "cost": "Free",
+      "bestFor": "Signal-based data fetching"
+    },
+    {
+      "title": "Tailwind CSS with Angular",
+      "url": "https://angular.dev/guide/tailwind",
+      "type": "Reading",
+      "cost": "Free",
+      "bestFor": "Theming setup"
+    },
+    {
+      "title": "ngx-translate",
+      "url": "https://ngx-translate.org",
+      "type": "Library docs",
+      "cost": "Free",
+      "bestFor": "Runtime translations"
+    },
+    {
+      "title": "TypeScript Handbook",
+      "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+      "type": "Reading",
+      "cost": "Free",
+      "bestFor": "Week 1 for anyone new to TypeScript"
+    },
+    {
+      "title": "DummyJSON",
+      "url": "https://dummyjson.com",
+      "type": "Mock REST API",
+      "cost": "Free",
+      "bestFor": "The API behind Karkhana"
+    },
+    {
+      "title": "Angular Community Discord",
+      "url": "https://discord.gg/angular",
+      "type": "Community",
+      "cost": "Free",
+      "bestFor": "Questions the team channel cannot answer"
+    }
+  ]
+}
